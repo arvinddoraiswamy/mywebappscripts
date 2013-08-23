@@ -1,0 +1,8 @@
+1. Spider the application and generate a site map in Burp.
+2. Select the sites/directories that you want using CTRL+Click; right click in Burp and select 'Copy all URLs'.
+3. Create a new file called https_urls in the same directory as this script.
+4. Paste the copied URLs into this file and save this file.
+5. Run the script force_http_req_threaded.py as follows - python force_http_req_threaded.py.
+6. Create a directory called URLs. The file 'https_urls' is copied into URLs and split into multiple files; each having 200 lines at most.
+7. Each file is processed and every single https URL now requested over HTTP.
+8. The result of this process is written into a file called 'report'. This file is in the same directory as the script.

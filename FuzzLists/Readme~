@@ -1,0 +1,13 @@
+1) Replace 'arv' and 'ind' with parts of a username valid for a particular application.
+     Replace 'arvind' with a complete username valid for a particular application.
+
+2) Replace 'pass' and 'word' with parts of a password valid for a particular application.
+     Replace 'password' with a complete password valid for a particular application.
+
+3) If you want to check field by field the burp sniper fuzzer works. Use lists one by one. To test each username with all passwords, use the burp clusterbomb fuzzer so you can try all possible combinations. [Close to 90,000 requests]
+
+4) Once you have finished one round with just this list you can use the encoding rules that Burp has to try and send URL encoded/other combinations of the lists.
+
+5) Once you've gone through this list and found nothing, I usually go through the inbuilt 'SQL Injection' list that Burp Pro intruder has, and lastly run Burp Scanner/Sqlmap.
+
+6) If I find nothing to run with in all of that, I mark the test case [SQL Injection - Login page] a 'Success' and move on.

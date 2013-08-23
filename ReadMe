@@ -1,0 +1,29 @@
+This ReadMe is just a summary of what each of the scripts do. As I write more (or as you do) please take a few minutes to keep this up to date.
+
+1) Request URLs over HTTP - ForceSSL/force_http_req_threaded.py
+
+There's a test case which is in place to request every single HTTPS url over HTTP. Mixed content is dangerous and cookies can be stolen using Firesheep or similar tools. With that in mind I wrote a script which basically takes every single URL from Burp's site map/history/whatever (just need a big bunch of URLs somehow) and requests all of them over HTTP and generates a report. There's a more detailed ReadMe inside the directory.
+
+2) Special Fuzz list - Fuzzlists/*
+
+So there is FuzzDb and its great collection, and there are Burp Pro's own cool lists and features to mangle them. That apart I came up with 2 other lists - one for the Authentication Page (this one's old) and a list for checking for URL Redirects. As time goes by I'll keep adding to it. Needless to say, if there's a specific list you have in mind, please add it here. There's a more detailed ReadMe inside the directory.
+
+3) Check for presence of AntiCSRF token in request - Burp Extensions/csrf_token_detect.py
+
+Give this script the exact name of the token in the requests sent to your application. It'll then search for the absence of that token in every subsequent request and report all such URLs. Does it for GET and POST. It's nothing fancy and you can do this through Burp's filter bar, but Burp's died on me too many times while searching, so I got bored and wrote this.
+
+4) Download all JS files - Burp Extensions/download_all_js_files.py
+
+Many times I've wanted to look at a ton of JS files all at 1 shot. Usually it's filter by extension in Burp and then download one by one, or look ib %TEMP% or Firebug per page. This bit of code looks at the request, sees if it's JS and downloads it using Wget into a directory of your choice. Locations are tweakable. Not fancy again, but it can be useful at times..maybe for grepping through JS throughout the application for sensitive strings.
+
+5) Identify which parameters "could" have URLs in there - BurpExtensions/url_in_parameter_detect.py
+
+Test cases such as URL redirection or LFI/RFI/Code Injection tend to be kinda ignored by me till the end, at which point I realize there's 1 day left and a bunch of test cases pending. Then er..er..you get it. So to make that a little smoother I wrote this extension, it'll look at patterns in parameter values and dump that URL and the parameter in question into a file. The engineer can then look at those URLs and test just those exhaustively instead of worrying about all the URLs that he/she might have missed all through the project.
+
+6) Version Information leakage - BurpExtensions/version_detect.py
+
+Simple extension which just records banners from the Server: response header and also searches through response bodies for a set of common web/app servers. Many times the metadata of reports or other files leaks information and it isn't always caught. This'll help address that to some extent.
+
+7) Third Party Referer leakage - BurpExtensions/third_party_referer_record.py
+
+Sites talk to sites. While talking there's sensitive information which leaks in referers many times. This extension will get all the requests made to third party sites and dump their referers into a file. The engineer can look at this file and decide if there's any leakage. There's ways to make this better but this is a start for sure for a very ignored and boring test case :)
