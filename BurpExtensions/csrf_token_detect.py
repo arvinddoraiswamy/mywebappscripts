@@ -62,10 +62,10 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
   def get_host_header_from_request(self,requestInfo):
     t1 = requestInfo.getHeaders()
     header_name='Host:'
- 
+    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
+    
     for i in t1:
       #Search for the Host header
-      regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
       m1=regex.match(i)
  
       #Extract and store the Host header
