@@ -9,7 +9,7 @@ import sys
 
 unique_banners={}
 list_of_platforms=['iis','apache','tomcat','weblogic','websphere','jetty','gws','ibm','oracle','nginx']
-urls_in_scope=['fakesite1.com']
+urls_in_scope=['qa.blah.com','qa.ooboob.com']
 
 class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
   def registerExtenderCallbacks(self,callbacks):
@@ -28,8 +28,11 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
   def processProxyMessage(self,messageIsRequest,message):
     response_byte_array=message.getMessageInfo().getResponse()
 
+    request_http_service=message.getMessageInfo().getHttpService()
+    request_byte_array=message.getMessageInfo().getRequest()
+    request_object=self._helpers.analyzeRequest(request_http_service, request_byte_array)
     #Extract hostname from header
-    hostname=BurpExtender.get_host_header_from_request(self,requestInfo)
+    hostname=BurpExtender.get_host_header_from_request(self,request_object)
 
     #Check if the URL is in scope. This is to eliminate stray traffic.
     if hostname and hostname[1] in urls_in_scope:

@@ -8,7 +8,7 @@ import urllib
 param_constant_type_mapping = {'0':'PARAM_URL','1':'PARAM_BODY','2':'PARAM_COOKIE','3':'PARAM_XML','4':'PARAM_XML_ATTR','5':'PARAM_MULTIPART_ATTR','6':'PARAM_JSON'}
 url_patterns=['http','https','://','/','\w\.\w+$','\\\\','%5c','%2f','%3a']
 excluded_url_patterns=['\d+/\d+/\d+','\d+%2f\d+%2f\d+']
-urls_in_scope=['fakesite1.com','fakesite2.com','fakesite3.com']
+urls_in_scope=['qa.blah.com','qa.ooboob.com']
 
 class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
   def registerExtenderCallbacks(self,callbacks):

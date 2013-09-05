@@ -4,9 +4,9 @@ from burp import IProxyListener
 import re
 import sys
 
-anticsrf_token_name='CSRFToken'
+anticsrf_token_name='__VIEWSTATE'
 excluded_file_extensions=['.jpg','.gif','.bmp','.png','.css','.js','.htc']
-urls_in_scope=['fakesite.com']
+urls_in_scope=['qa.blah.com','qa.ooboob.com']
 
 class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
   def registerExtenderCallbacks(self,callbacks):

@@ -4,7 +4,7 @@ from burp import IProxyListener
 import re
 import sys
 
-urls_in_scope=['fakesite1.com','fakesite2.com']
+urls_in_scope=['qa.blah.com','qa.ooboob.com']
 
 class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
   def registerExtenderCallbacks(self,callbacks):
