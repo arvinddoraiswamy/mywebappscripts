@@ -67,14 +67,39 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
           #If the value for the URL parameter matches a pattern print it out
           if whitelist==1:
             print str(request_url)+"\t\t"+str(param_constant_type_mapping[str(param.getType())])+"\t\t"+str(param.getName())+"\t\t"+str(param.getValue())
+    else:
+      response_byte_array=message.getMessageInfo().getResponse()
+      responseInfo = self._helpers.analyzeResponse(response_byte_array)
+
+      responseCode=BurpExtender.get_response_code_from_headers(self,responseInfo)
+      location=BurpExtender.get_location_from_headers(self,responseInfo)
+      if location:
+        print str(responseCode[0])+'\t\t'+str(location[1])
+
+  def get_response_code_from_headers(self,responseInfo):
+    t1 = responseInfo.getHeaders()
+    return t1
+
+  def get_location_from_headers(self,responseInfo):
+    t1 = responseInfo.getHeaders()
+    header_name='Location:'
+ 
+    #Search for the Location header
+    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
+    for i in t1:
+      m1=regex.match(i)
+      #Extract and store the Location header
+      if m1:
+        t2=i.split(': ')
+        return t2
 
   def get_host_header_from_request(self,requestInfo):
     t1 = requestInfo.getHeaders()
     header_name='Host:'
  
+    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
     for i in t1:
       #Search for the Host header
-      regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
       m1=regex.match(i)
  
       #Extract and store the Host header

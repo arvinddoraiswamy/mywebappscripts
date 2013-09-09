@@ -27,3 +27,17 @@ Simple extension which just records banners from the Server: response header and
 7) Third Party Referer leakage - BurpExtensions/third_party_referer_record.py
 
 Sites talk to sites. While talking there's sensitive information which leaks in referers many times. This extension will get all the requests made to third party sites and dump their referers into a file. The engineer can look at this file and decide if there's any leakage. There's ways to make this better but this is a start for sure for a very ignored and boring test case :)
+
+8) Detecting invalid Referers in case a Referer is used for protecting against CSRF
+
+Many times there isn't an AntiCSRF token in place but the site protects against CSRF using Referer headers. This piece of code will detect a page which doesn't have a Referer header. It isn't going to do any kind of manipulation, but it'll flag pages with say no Referer headers, so you can then test them manually.
+
+9) Recording all Set-Cookie headers in a file
+
+Some times an application sets cookie headers in an insecure manner. No secure attribute, no httponly. So Burp Scanner reports this. What happens though is that the application sets that cookie on the very very next page at times even before a successful login. So although the cookie did not have a secure attribute set at 1 point, it's not a valid finding at all. This'll just dump all the Set-Cookie headers into a file so you can manually look at it instead and decide for yourself.
+
+10) Recording all Location info in responses
+
+This isn't really too useful, specially since you can do this very easily using Burp's filter bar. All the same, it's good to have all of this done on its own instead of searching again and again. This could be useful in finding out where all Burp redirects users. Those hosts might be whitelisted and hence candidates for URL redirection flaws.
+
+10)

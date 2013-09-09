@@ -41,9 +41,9 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
     t1 = requestInfo.getHeaders()
     header_name='Host:'
  
+    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
     for i in t1:
       #Search for the Host header
-      regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
       m1=regex.match(i)
  
       #Extract and store the Host header
@@ -56,9 +56,9 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
     t1 = requestInfo.getHeaders()
     header_name='Referer:'
  
+    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
     for i in t1:
       #Search for the Referer header
-      regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
       m1=regex.match(i)
  
       #Extract and store the Referer header

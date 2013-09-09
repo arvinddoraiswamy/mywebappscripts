@@ -4,12 +4,9 @@ from burp import IProxyListener
 import re
 import sys
 
-anticsrf_token_name='__VIEWSTATE'
 excluded_file_extensions=['.jpg','.gif','.bmp','.png','.css','.js','.htc']
 urls_in_scope=['securityinnovation.com']
 
-#This section is useful only if the Referer is used as an AntiCSRF defense mechanism
-is_referer_used=1
 referer_header_name='Referer'
 referer_header_value='https://securityinnovation.com/'
 
@@ -19,7 +16,7 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
     self._helpers = callbacks.getHelpers()
 
     # set our extension name
-    callbacks.setExtensionName("CSRF Token Detector")
+    callbacks.setExtensionName("CSRF Valid Referer Detector")
 
     # register ourselves as an HTTP listener
     callbacks.registerHttpListener(self)
@@ -28,41 +25,39 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
     callbacks.registerProxyListener(self)
 
   def processProxyMessage(self,messageIsRequest,message):
-    request_url = BurpExtender.detect_csrf_token(self,messageIsRequest,message)
-    if request_url:
-      print request_url
+    request_url = BurpExtender.detect_valid_referer(self,messageIsRequest,message)
 
-  def detect_csrf_token(self,messageIsRequest,message):
-    #Only process requests as that's where the Token should be
+  def detect_valid_referer(self,messageIsRequest,message):
+    #Only process requests as that's where the valid Referer should be 
+    request_http_service=message.getMessageInfo().getHttpService()
     request_byte_array=message.getMessageInfo().getRequest()
+    requestInfo=self._helpers.analyzeRequest(request_http_service, request_byte_array)
+    request_url=requestInfo.getUrl()
+
     if messageIsRequest:
-      t1=[]
-      t2=[]
-      flag=0
-
-      requestInfo = self._helpers.analyzeRequest(request_byte_array)
-
       #Extract hostname from header
       hostname=BurpExtender.get_host_header_from_request(self,requestInfo)
 
       #Check if the URL is in scope. This is to eliminate stray traffic.
       if hostname and hostname[1] in urls_in_scope:
-        csrf_token_value=self._helpers.getRequestParameter(request_byte_array,anticsrf_token_name)
-        request_string=self._helpers.bytesToString(request_byte_array)
-        urlpath=request_string.split("\n")
-        tmp2=urlpath[0].split(' ')
+        referer=BurpExtender.get_referer_header_from_request(self,requestInfo)
+        if not referer[1].startswith(referer_header_value):
+          print str(request_url)+'\t\t'+str(referer[1])
+
+  def get_referer_header_from_request(self,requestInfo):
+    t1 = requestInfo.getHeaders()
+    header_name='Referer:'
  
-      #If there's no token, check if it's an image, js or css file. In this case, a token isn't needed
-        if not csrf_token_value:
-          for tmp3 in excluded_file_extensions:
-            #Search for file extension. If you want a more complex regex..remember to compile the regex. DO.NOT.FORGET :)
-            tmp4=re.search(tmp3,tmp2[-2])
-            if tmp4:
-              flag=1
+    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
+    for i in t1:
+      #Search for the Referer header
+      m1=regex.match(i)
  
-          #Not to be excluded and the request doesn't contain a token
-          if flag != 1:
-            return urlpath[0]
+      #Extract and store the Referer header
+      if m1:
+        t2=i.split(': ')
+ 
+    return t2
 
   def get_host_header_from_request(self,requestInfo):
     t1 = requestInfo.getHeaders()
