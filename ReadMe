@@ -6,7 +6,9 @@ There's a test case which is in place to request every single HTTPS url over HTT
 
 2) Special Fuzz list - Fuzzlists/*
 
-So there is FuzzDb and its great collection, and there are Burp Pro's own cool lists and features to mangle them. That apart I came up with 2 other lists - one for the Authentication Page (this one's old) and a list for checking for URL Redirects. As time goes by I'll keep adding to it. Needless to say, if there's a specific list you have in mind, please add it here. There's a more detailed ReadMe inside the directory.
+So there is FuzzDb and its great collection, and there are Burp Pro's own cool lists and features to mangle them. That apart I came up with 2 other lists - one for the Authentication Page (this one's old) and a list for checking for URL Redirects. As time goes by I'll keep adding to it. Needless to say, if there's a specific list you have in mind, please add it here. There's a more detailed ReadMe for the Auth lists inside the directory.
+
+I added a couple of lists for directory traversal on a Windows and a Linux system. They're just the FuzzDB lists really, but have a Windows specific and a Linux specific file name tagged on at the end, instead of having to modify the payloads using the 'Burp Intruder rules'.
 
 3) Check for presence of AntiCSRF token in request - Burp Extensions/csrf_token_detect.py
 
@@ -39,5 +41,3 @@ Some times an application sets cookie headers in an insecure manner. No secure a
 10) Recording all Location info in responses
 
 This isn't really too useful, specially since you can do this very easily using Burp's filter bar. All the same, it's good to have all of this done on its own instead of searching again and again. This could be useful in finding out where all Burp redirects users. Those hosts might be whitelisted and hence candidates for URL redirection flaws.
-
-10)
