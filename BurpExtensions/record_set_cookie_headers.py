@@ -2,10 +2,14 @@ from burp import IBurpExtender
 from burp import IHttpListener
 from burp import IProxyListener
 import re
+import os
 import sys
-import urllib
 
-urls_in_scope=['securityinnovation.com','qa.ooboob.com']
+urls_in_scope=['testblah.com','qa.ooboob.com']
+#Adding directory to the path where Python searches for modules
+module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules/')
+sys.path.insert(0, module_folder)
+import webcommon
 
 class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
   def registerExtenderCallbacks(self,callbacks):
@@ -22,26 +26,14 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
     callbacks.registerProxyListener(self)
 
   def processProxyMessage(self,messageIsRequest,message):
+    request_byte_array=message.getMessageInfo().getRequest()
+    requestInfo = self._helpers.analyzeRequest(request_byte_array)
     setcookie_header=BurpExtender.record_setcookie_headers(self,messageIsRequest,message)
 
   def record_setcookie_headers(self,messageIsRequest,message):
     if not messageIsRequest:
       response_byte_array=message.getMessageInfo().getResponse()
       responseInfo = self._helpers.analyzeResponse(response_byte_array)
-      setcookie_header=BurpExtender.get_setcookie_from_header(self,responseInfo)
+      setcookie_header=webcommon.get_setcookie_from_header(self,responseInfo)
       if setcookie_header:
         print setcookie_header[1]
-
-  def get_setcookie_from_header(self,responseInfo):
-    t1 = responseInfo.getHeaders()
-    header_name='Set-Cookie:'
- 
-    #Search for the Set Cookie header
-    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
-
-    for i in t1:
-      m1=regex.match(i)
-      #Extract and store the Set Cookie header
-      if m1:
-        t2=i.split(': ')
-        return t2

@@ -1,5 +1,11 @@
 from burp import IBurpExtender
 import jarray
+import os
+
+#Adding directory to the path where Python searches for modules
+module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules/')
+sys.path.insert(0, module_folder)
+import webcommon
 
 unique_list_of_urls=[]
 
@@ -21,25 +27,15 @@ class BurpExtender(IBurpExtender):
       requestInfo = self._helpers.analyzeRequest(request_byte_array)
       BurpExtender.fuzz_url(self,callbacks,request_byte_array,requestInfo)
 
-  def extract_directory(self,callbacks,url):
-    t0=url.split('/')
-    if len(t0) > 1:
-      t0.pop(-1)
-    i=0
-    t1=''
-    while i<len(t0):
-      t1=t1+'/'+t0[i]
-      i+=1
-    return t1[1:]
-
   def fuzz_url(self,callbacks,request_byte_array,requestInfo):
     if requestInfo:
       request_headers=requestInfo.getHeaders()
       t0=request_headers[0].split(' ')
       t1=request_headers[1].split(': ')
 
-      #if is_protocol_https:
-      directory=BurpExtender.extract_directory(self,callbacks,t0[1])
+      #Extract directories from every single request in proxy history
+      directory=webcommon.extract_directory(self,callbacks,t0[1])
+
       if directory not in unique_list_of_urls:
         unique_list_of_urls.append(directory)
         request_string=self._helpers.bytesToString(request_byte_array)

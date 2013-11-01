@@ -4,11 +4,17 @@ from burp import IProxyListener
 import re
 import sys
 import urllib
+import os
 
 param_constant_type_mapping = {'0':'PARAM_URL','1':'PARAM_BODY','2':'PARAM_COOKIE','3':'PARAM_XML','4':'PARAM_XML_ATTR','5':'PARAM_MULTIPART_ATTR','6':'PARAM_JSON'}
 url_patterns=['http','https','://','/','\w\.\w+$','\\\\','%5c','%2f','%3a']
 excluded_url_patterns=['\d+/\d+/\d+','\d+%2f\d+%2f\d+']
-urls_in_scope=['qa.blah.com','qa.ooboob.com']
+urls_in_scope=['testblah.com','qa.blah.com','qa.ooboob.com']
+
+#Adding directory to the path where Python searches for modules
+module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules/')
+sys.path.insert(0, module_folder)
+import webcommon
 
 class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
   def registerExtenderCallbacks(self,callbacks):
@@ -37,7 +43,7 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
       request_object=self._helpers.analyzeRequest(request_http_service, request_byte_array)
 
       #Extract hostname from header
-      hostname=BurpExtender.get_host_header_from_request(self,request_object)
+      hostname=webcommon.get_host_header_from_request(self,request_object)
 
       #Check if the URL is in scope. This is to eliminate stray traffic.
       if hostname and hostname[1] in urls_in_scope:
@@ -66,44 +72,18 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
 
           #If the value for the URL parameter matches a pattern print it out
           if whitelist==1:
+            #The moment you detect that a URL matches a pattern you also want to fuzz it. Hence you do the following:
+            # -- Check if you already sent it to Intruder
+            # -- If not, mark the positions that you want scanned
+            # -- Set the payload list, set any other Intruder customizations up
+            # -- Send the URL to be fuzzed to Intruder
+            # -- Probably fuzz it as well and save the Intruder results to be imported later
             print str(request_url)+"\t\t"+str(param_constant_type_mapping[str(param.getType())])+"\t\t"+str(param.getName())+"\t\t"+str(param.getValue())
     else:
       response_byte_array=message.getMessageInfo().getResponse()
       responseInfo = self._helpers.analyzeResponse(response_byte_array)
 
-      responseCode=BurpExtender.get_response_code_from_headers(self,responseInfo)
-      location=BurpExtender.get_location_from_headers(self,responseInfo)
+      responseCode=webcommon.get_response_code_from_headers(self,responseInfo)
+      location=webcommon.get_location_from_headers(self,responseInfo)
       if location:
         print str(responseCode[0])+'\t\t'+str(location[1])
-
-  def get_response_code_from_headers(self,responseInfo):
-    t1 = responseInfo.getHeaders()
-    return t1
-
-  def get_location_from_headers(self,responseInfo):
-    t1 = responseInfo.getHeaders()
-    header_name='Location:'
- 
-    #Search for the Location header
-    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
-    for i in t1:
-      m1=regex.match(i)
-      #Extract and store the Location header
-      if m1:
-        t2=i.split(': ')
-        return t2
-
-  def get_host_header_from_request(self,requestInfo):
-    t1 = requestInfo.getHeaders()
-    header_name='Host:'
- 
-    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
-    for i in t1:
-      #Search for the Host header
-      m1=regex.match(i)
- 
-      #Extract and store the Host header
-      if m1:
-        t2=i.split(': ')
- 
-    return t2

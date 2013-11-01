@@ -3,8 +3,13 @@ from burp import IHttpListener
 from burp import IProxyListener
 import re
 import sys
+import os
 
-urls_in_scope=['qa.blah.com','qa.ooboob.com']
+urls_in_scope=['testblah.com','qa.ooboob.com']
+#Adding directory to the path where Python searches for modules
+module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules/')
+sys.path.insert(0, module_folder)
+import webcommon
 
 class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
   def registerExtenderCallbacks(self,callbacks):
@@ -26,42 +31,13 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
     request_object=self._helpers.analyzeRequest(request_http_service, request_byte_array)
 
     #Extract hostname from header
-    hostname=BurpExtender.get_host_header_from_request(self,request_object)
+    hostname=webcommon.get_host_header_from_request(self,request_object)
 
     #Check if the URL is NOT in scope. We want to look at referers for the requests that are made to OTHER domains.
     if (hostname) and (hostname[1] not in urls_in_scope):
       #Extract referer from header
-      referer=BurpExtender.get_referer_header_from_request(self,request_object)
+      referer=webcommon.get_referer_header_from_request(self,request_object)
       if referer:
         t1=referer[1].split('/')
         if t1[2] in urls_in_scope:
           print referer[1]
-
-  def get_host_header_from_request(self,requestInfo):
-    t1 = requestInfo.getHeaders()
-    header_name='Host:'
- 
-    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
-    for i in t1:
-      #Search for the Host header
-      m1=regex.match(i)
- 
-      #Extract and store the Host header
-      if m1:
-        t2=i.split(': ')
- 
-    return t2
-
-  def get_referer_header_from_request(self,requestInfo):
-    t1 = requestInfo.getHeaders()
-    header_name='Referer:'
- 
-    regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
-    for i in t1:
-      #Search for the Referer header
-      m1=regex.match(i)
- 
-      #Extract and store the Referer header
-      if m1:
-        t2=i.split(': ')
-        return t2
