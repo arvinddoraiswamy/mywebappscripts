@@ -6,7 +6,7 @@ import sys
 import os
 
 session_cookie_names = ['JSESSIONID','PHPSESSID']
-urls_in_scope = ['securityinnovation.com']
+urls_in_scope = ['blahtest.com']
 remote_listening_port = 443
 protocol = 'https'
 hostname = []
