@@ -34,6 +34,10 @@ Test cases such as URL redirection or LFI/RFI/Code Injection tend to be kinda ig
 
 Simple extension which just records banners from the Server: response header and also searches through response bodies for a set of common web/app servers. Many times the metadata of reports or other files leaks information and it isn't always caught. This'll help address that to some extent.
 
+9. Remove session cookie and reissue request to check Direct requests
+
+Many times URLs that are accessible after logging in are also accessible directly. This extension strips the session cookie (add your cookie to an array inside code) and reissues the request without the cookie. It then prints the response code and the length of the response so the engineer can see if certain requests behaved differently to others and successfully completed even without a session cookie.
+
 -------------
 1) Request URLs over HTTP - ForceSSL/force_http_req_threaded.py
 

@@ -8,6 +8,7 @@ This ReadMe is just a list of the Burp extensions and other scripts I have here.
 6. Record third party referers
 7. Identify candidates for URL redirection, LFI and RFI
 8. Detect version information leakage in headers or response bodies
+9. Remove session cookie and reissue request to check Direct requests
 
 Other scripts/tools/fuzz lists/misc :)
 
