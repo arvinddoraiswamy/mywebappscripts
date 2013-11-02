@@ -1,0 +1,7 @@
+1. Get host from request header
+2. Extract directory from a given URL
+3. Get Referer from request header
+4. Get SetCookie from response header
+5. Get Response Code from response header
+6. Get Location from response header
+7. Get Server from response header
