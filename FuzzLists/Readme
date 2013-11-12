@@ -1,3 +1,5 @@
+AUTHENTICATION:
+
 1) Replace 'arv' and 'ind' with parts of a username valid for a particular application.
      Replace 'arvind' with a complete username valid for a particular application.
 
@@ -11,3 +13,5 @@
 5) Once you've gone through this list and found nothing, I usually go through the inbuilt 'SQL Injection' list that Burp Pro intruder has, and lastly run Burp Scanner/Sqlmap.
 
 6) If I find nothing to run with in all of that, I mark the test case [SQL Injection - Login page] a 'Success' and move on.
+
+----------------------------------------------------------------------------------------------------------------------------------
