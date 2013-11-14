@@ -42,6 +42,10 @@ Many times URLs that are accessible after logging in are also accessible directl
 
 Sometimes the PUT and DELETE methods are enabled on the webserver but can be used only on a specific directory due to the permissions in place. This script will upload and delete a dummy file in every single directory that you browse through and record the results. This is best used at the end of a test when you have a huge huge list of directories that you have browsed in your proxy history, as that's where the script reads a list from.
 
+11. Scan all SSL hosts in Proxy history - BurpExtensions/sslyze_scan.py
+
+Checking SSL configurations of hosts is a very common test. Sometimes though the app you are testing makes connections to other hosts too. These hosts too might be in scope for you. This extension reads your entire proxy history, extracts all hosts that have had SSL connections made to them, and runs the cool tool sslyze against them. It's nothing you can't do by simply running sslyze but since I'm trying to use Burp as a one stop shop for as many tests as possible, this acts as a nice wrapper around them.
+
 -------------
 1) Request URLs over HTTP - ForceSSL/force_http_req_threaded.py
 

@@ -10,6 +10,7 @@ This ReadMe is just a list of the Burp extensions and other scripts I have here.
 8. Detect version information leakage in headers or response bodies
 9. Remove session cookie and reissue request to check Direct requests
 10. Test PUT and DELETE on every single directory that you browse
+11. Scan all SSL hosts in Proxy history
 
 Other scripts/tools/fuzz lists/misc :)
 
