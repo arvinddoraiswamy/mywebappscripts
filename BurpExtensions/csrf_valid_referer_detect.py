@@ -9,7 +9,7 @@ excluded_file_extensions=['.jpg','.gif','.bmp','.png','.css','.js','.htc']
 urls_in_scope=['testblah.com']
 
 referer_header_name='Referer'
-referer_header_value='https://testblah.com/'
+referer_header_value='https://home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules.com/'
 
 #Adding directory to the path where Python searches for modules
 module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules/')

@@ -1,6 +1,7 @@
 from burp import IBurpExtender
 import os
-result_file='/tmp/sslscan_result'
+result_dir='/media/truecrypt2/Sony_2014-04_OneSony/screenshots/'
+result_file='sslscan_result'
 
 #Adding directory to the path where Python searches for modules
 module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules/')
@@ -55,5 +56,7 @@ class BurpExtender(IBurpExtender):
     for url in list_ssl_urls:
       print "Processing url "+url
       dest=url.split(':')
-      cmd='python /media/9f576cb3-3236-42c7-b9bf-869b455b2d87/Installations/sslyze/sslyze-0.6_src/sslyze.py --sslv2 --sslv3 --tlsv1 --tlsv1_1 --tlsv1_2 --hide_rejected_ciphers --reneg --certinfo=basic '+dest[1][2:]+' '+dest[2]+'>>result_file'
+      full_path=result_dir+dest[1][2:]+'_'+result_file
+      cmd='python /media/9f576cb3-3236-42c7-b9bf-869b455b2d87/Installations/sslyze/sslyze-0.6_src/sslyze.py --sslv2 --sslv3 --tlsv1 --tlsv1_1 --tlsv1_2 --hide_rejected_ciphers --reneg --certinfo=basic '+dest[1][2:]+' '+dest[2]+'>'+full_path
+      print cmd
       os.system(cmd)

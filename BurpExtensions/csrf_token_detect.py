@@ -5,12 +5,15 @@ import re
 import sys
 import os
 
-anticsrf_token_name='__VIEWSTATE'
-excluded_file_extensions=['.jpg','.gif','.bmp','.png','.css','.js','.htc']
-urls_in_scope=['testblah.com']
+#This is where you put the name of the token that is being used in the application you are testing. It searches for __VIEWSTATE by default. The 
+#extension will search for this token in every request and tell you which requests do NOT have a token, so you can manually explore.
+anticsrf_token_name='securityRequestParameter'
+
+excluded_file_extensions=['.jpg','.gif','.bmp','.png','.css','.js','.htc','.jpeg','.ico','.svg']
+urls_in_scope=['blah.test.com']
 
 #Adding directory to the path where Python searches for modules
-module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules/')
+module_folder = os.path.dirname('/media/truecrypt2/Sony_2014-04_OneSony/screenshots/BurpExtensions/modules/')
 sys.path.insert(0, module_folder)
 import webcommon
 
@@ -30,6 +33,7 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
 
   def processProxyMessage(self,messageIsRequest,message):
     request_url = BurpExtender.detect_csrf_token(self,messageIsRequest,message)
+    print request_url
 
   def detect_csrf_token(self,messageIsRequest,message):
     #Only process requests as that's where the Token should be

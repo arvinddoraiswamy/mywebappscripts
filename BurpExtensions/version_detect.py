@@ -9,8 +9,8 @@ import sys
 import os
 
 unique_banners={}
-list_of_platforms=['iis','apache','tomcat','weblogic','websphere','jetty','gws','ibm','oracle','nginx']
-urls_in_scope=['testblah.com','qa.blah.com','qa.ooboob.com']
+list_of_platforms=['iis','apache','tomcat','weblogic','websphere','jetty','gws','ibm','oracle','nginx','bigip']
+urls_in_scope=['stg.one.sony-europe.com']
 
 #Adding directory to the path where Python searches for modules
 module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules/')
@@ -49,7 +49,6 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
 
          #Extract banner from response
          banner=webcommon.get_banner_from_response(self,responseInfo)
-         print banner
          if banner not in unique_banners.keys():
            unique_banners[banner]=''
            print banner

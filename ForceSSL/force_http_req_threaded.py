@@ -89,8 +89,11 @@ def create_report(filename,urls_accessible_http):
     traceback.print_exc(file=sys.stdout)
 
   if len(urls_accessible_http) > 0:
+    f.write(filename+'\n\n')
     for url in urls_accessible_http:
-      f.write(url+'\n')
+      f.write('-----------')
+      f.write('\n'+url+'\n')
+    f.write('-----------')
   else:
     f.write(filename+' --- None of the URLs can be accessed over HTTP.\n')
 

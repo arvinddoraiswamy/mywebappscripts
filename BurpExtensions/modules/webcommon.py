@@ -27,6 +27,16 @@ def extract_directory(self,callbacks,url):
 
   return t1[1:]
 
+def extract_urls(self,callbacks,url):
+  t0=url.split('/')
+  i=0
+  t1=''
+  while i<len(t0):
+    t1=t1+'/'+t0[i]
+    i+=1
+
+  return t1[1:]
+
 def get_referer_header_from_request(self,requestInfo):
   t1 = requestInfo.getHeaders()
   header_name='Referer:'
@@ -78,14 +88,15 @@ def get_response_body(self,response_byte_array,responseInfo):
 
 def get_banner_from_response(self,responseInfo):
   t1 = responseInfo.getHeaders()
-  header_name='Server:'
+  #header_name='Server:'
+  header_name=['Server:','X-AspNet-Version:','X-AspNetMvc-Version:','X-Powered-By:','X-Requested-With:','X-UA-Compatible:','Via:']
  
-  regex=re.compile('^.*%s.*'%header_name,re.IGNORECASE)
-  for i in t1:
-    #Search for the Server header
-    m1=regex.match(i)
+  for h1 in header_name:
+    regex=re.compile('^.*%s.*'%h1,re.IGNORECASE)
+    for i in t1:
+      #Search for the Server header
+      m1=regex.match(i)
 
-    #Extract and store the Server header
-    if m1:
-      t2=i.split(': ')
-      return t2[1]
+      #Extract and store the Server header
+      if m1:
+        return i

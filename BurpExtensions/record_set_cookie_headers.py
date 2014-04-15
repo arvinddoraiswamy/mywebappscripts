@@ -5,9 +5,9 @@ import re
 import os
 import sys
 
-urls_in_scope=['testblah.com','qa.ooboob.com']
+urls_in_scope=['stg.one.sony-europe.com']
 #Adding directory to the path where Python searches for modules
-module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules/')
+module_folder = os.path.dirname('/media/truecrypt2/Sony_2014-04_OneSony/screenshots/BurpExtensions/modules/')
 sys.path.insert(0, module_folder)
 import webcommon
 
@@ -36,4 +36,5 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
       responseInfo = self._helpers.analyzeResponse(response_byte_array)
       setcookie_header=webcommon.get_setcookie_from_header(self,responseInfo)
       if setcookie_header:
-        print setcookie_header[1]
+        for cookie in setcookie_header:
+          print cookie
