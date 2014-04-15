@@ -5,9 +5,9 @@ import re
 import os
 import sys
 
-urls_in_scope=['stg.one.sony-europe.com']
+urls_in_scope=['test.blah.com']
 #Adding directory to the path where Python searches for modules
-module_folder = os.path.dirname('/media/truecrypt2/Sony_2014-04_OneSony/screenshots/BurpExtensions/modules/')
+module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules')
 sys.path.insert(0, module_folder)
 import webcommon
 

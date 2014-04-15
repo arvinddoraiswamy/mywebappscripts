@@ -13,7 +13,7 @@ excluded_file_extensions=['.jpg','.gif','.bmp','.png','.css','.js','.htc','.jpeg
 urls_in_scope=['blah.test.com']
 
 #Adding directory to the path where Python searches for modules
-module_folder = os.path.dirname('/media/truecrypt2/Sony_2014-04_OneSony/screenshots/BurpExtensions/modules/')
+module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules')
 sys.path.insert(0, module_folder)
 import webcommon
 

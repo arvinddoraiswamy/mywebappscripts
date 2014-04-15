@@ -10,7 +10,7 @@ import os
 
 unique_banners={}
 list_of_platforms=['iis','apache','tomcat','weblogic','websphere','jetty','gws','ibm','oracle','nginx','bigip']
-urls_in_scope=['stg.one.sony-europe.com']
+urls_in_scope=['test.blah.com']
 
 #Adding directory to the path where Python searches for modules
 module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAppsec/BurpExtensions/modules/')

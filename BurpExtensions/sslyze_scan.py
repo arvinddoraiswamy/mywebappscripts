@@ -1,6 +1,6 @@
 from burp import IBurpExtender
 import os
-result_dir='/media/truecrypt2/Sony_2014-04_OneSony/screenshots/'
+result_dir='/tmp/'
 result_file='sslscan_result'
 
 #Adding directory to the path where Python searches for modules
