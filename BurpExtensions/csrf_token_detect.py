@@ -33,7 +33,8 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
 
   def processProxyMessage(self,messageIsRequest,message):
     request_url = BurpExtender.detect_csrf_token(self,messageIsRequest,message)
-    print request_url
+    if request_url:
+      print request_url
 
   def detect_csrf_token(self,messageIsRequest,message):
     #Only process requests as that's where the Token should be
