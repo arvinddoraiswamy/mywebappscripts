@@ -5,8 +5,8 @@ import re
 import sys
 import os
 
-session_cookie_names = ['JSESSIONID','PHPSESSID']
-urls_in_scope = ['blahtest.com']
+session_cookie_names = ['JSESSIONID','PeerID']
+urls_in_scope = ['abc.blah.com']
 remote_listening_port = 443
 protocol = 'https'
 hostname = []
@@ -33,12 +33,14 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
 
   def processProxyMessage(self,messageIsRequest,message):
     if messageIsRequest:
-      request_byte_array = BurpExtender.remove_sessioncookie_from_request(self,messageIsRequest,message)
-      BurpExtender.generate_request(self,request_byte_array)
+      request_byte_array,flag = BurpExtender.remove_sessioncookie_from_request(self,messageIsRequest,message)
+      if flag == 1:
+        BurpExtender.generate_request(self,request_byte_array)
 
   def remove_sessioncookie_from_request(self,messageIsRequest,message):
     request_byte_array=message.getMessageInfo().getRequest()
     requestInfo = self._helpers.analyzeRequest(request_byte_array)
+    flag=0
 
     #Extract hostname from header
     global hostname
@@ -55,8 +57,9 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
           request_string=re.sub(m1.group(2),'',request_string)
           #Restore the manipulated string to the byte array so it can be reused.
           request_byte_array = self._helpers.stringToBytes(request_string)
+          flag=1
 
-    return request_byte_array
+    return request_byte_array,flag
 
   def generate_request(self,request_byte_array):            
     if request_byte_array:

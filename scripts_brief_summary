@@ -2,7 +2,9 @@ This ReadMe is just a summary of what each of the scripts do. As I write more (o
 
 1. Search and fuzz all valid directories on a website - Burp Extensions/common_dir_search.py
 
-Lots of times, directories containing sensitive content are left on the server. As testers, we could scan the server using a web server scanner, and that might search in Webroot for a lot of common directories. What it might not do, is search for those common directories in every single sub directory. Some good scanners might do this, but since I'm trying to integrate everything inside Burp, this was a nice script to write. This is best enabled AFTER you have browsed the entire application and have a huge number of requests in your proxy history. The script will extract all the requests that contain different directories in their URL path and send them to Intruder, where you can then fuzz them.
+This is best enabled AFTER you have browsed the entire application and have a huge number of requests in your proxy history. 
+
+Lots of times, directories containing sensitive content are left on the server. As testers, we could scan the server using a web server scanner, and that might search in Webroot for a lot of common directories. What it might not do, is search for those common directories in every single sub directory. Some good scanners might do this, but since I'm trying to integrate everything inside Burp, this was a nice script to write. The script will extract all the requests that contain different directories in their URL path and send them to Intruder, where you can then fuzz them.
 
 Secondly, before starting this extension, send 1 request to Intruder..any 1 request and set your fuzz lists. Then go to Intruder - New Tab behavior - Copy configuration from the first tab. This'll save you a lot of time and you wont have to set payloads for every request (as there'll be a few) :)
 
@@ -40,9 +42,13 @@ Many times URLs that are accessible after logging in are also accessible directl
 
 10. Test PUT and DELETE on every single directory that you browse - BurpExtensions/http_method_test.py
 
-Sometimes the PUT and DELETE methods are enabled on the webserver but can be used only on a specific directory due to the permissions in place. This script will upload and delete a dummy file in every single directory that you browse through and record the results. This is best used at the end of a test when you have a huge huge list of directories that you have browsed in your proxy history, as that's where the script reads a list from.
+This is best used at the end of a test when you have a huge huge list of directories that you have browsed in your proxy history, as that's where the script reads a list from.
+
+Sometimes the PUT and DELETE methods are enabled on the webserver but can be used only on a specific directory due to the permissions in place. This script will upload and delete a dummy file in every single directory that you browse through and record the results. 
 
 11. Scan all SSL hosts in Proxy history - BurpExtensions/sslyze_scan.py
+
+This is best enabled AFTER you have browsed the entire application and have a huge number of requests in your proxy history. 
 
 Checking SSL configurations of hosts is a very common test. Sometimes though the app you are testing makes connections to other hosts too. These hosts too might be in scope for you. This extension reads your entire proxy history, extracts all hosts that have had SSL connections made to them, and runs the cool tool sslyze against them. It's nothing you can't do by simply running sslyze but since I'm trying to use Burp as a one stop shop for as many tests as possible, this acts as a nice wrapper around them.
 

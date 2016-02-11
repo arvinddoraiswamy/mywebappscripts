@@ -17,3 +17,8 @@ Other scripts/tools/fuzz lists/misc :)
 1. Request every single HTTPS request over HTTP
 2. Custom fuzzing lists for specific situations
 3. Code for all extensions has been modularized. List of functions in modules is present in modules/modules_functions_readme
+
+Tips:
+1. Add 2 slashes for configuring your modules path on Windows. Every extension needs this - as of now extensions search for webcommon.py inside a directory called 'modules' - this is in the same directory as all the Burp Extensions. An example would be C:\\tools\\extensions\\modules\\. A single slash is enough for Linux systems.
+
+2. Some extensions work best as you browse the application. Others work best when the entire application is browsed and you have all your requests inside Burp's history. Refer the file 'scripts_brief_summary' before starting to work.

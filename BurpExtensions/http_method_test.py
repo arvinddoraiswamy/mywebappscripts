@@ -7,11 +7,11 @@ module_folder = os.path.dirname('/home/arvind/Documents/Me/My_Projects/Git/WebAp
 sys.path.insert(0, module_folder)
 import webcommon
 
-protocol='http'
-remote_listening_port = 80
+protocol='https'
+remote_listening_port = 443
 unique_list_of_urls=[]
-filename='/tmp/abc'
-unique_list_of_urls=[]
+filename='abc'
+urls_in_scope=['test.blah.com']
 hostname=''
 
 class BurpExtender(IBurpExtender):
@@ -36,19 +36,22 @@ class BurpExtender(IBurpExtender):
       #Extract hostname from header
       hostname=webcommon.get_host_header_from_request(self,requestInfo)
 
-      #Test PUT for each directory in the proxy history
-      filepath=BurpExtender.test_put(self,callbacks,request_byte_array,hostname,requestInfo)
+      if hostname and hostname[1] in urls_in_scope:
+        #Test PUT for each directory in the proxy history
+        filepath=BurpExtender.test_put(self,callbacks,request_byte_array,hostname,requestInfo)
 
-      #Get the file that you just PUT
-      respcode=BurpExtender.check_file_existence_put(self,filepath)
+        #Get the file that you just PUT
+        if filepath != "scanned":
+          respcode=BurpExtender.check_file_existence_put(self,filepath)
 
-      if respcode=='200':
-        #Test DELETE for the file you uploaded
-        BurpExtender.test_delete(self,filepath)
+          if respcode=='200':
+            #Test DELETE for the file you uploaded
+            BurpExtender.test_delete(self,filepath)
 
-        #Get the file that you just DELETED. It should return a 404 if DELETE is enabled
-        BurpExtender.check_file_existence_delete(self,filepath)
-
+            #Get the file that you just DELETED. It should return a 404 if DELETE is enabled
+            BurpExtender.check_file_existence_delete(self,filepath)
+        else:
+          print "Filepath already scanned"
 
   def test_put(self,callbacks,request_byte_array,hostname,requestInfo):
     if requestInfo:
@@ -61,14 +64,16 @@ class BurpExtender(IBurpExtender):
 
       if directory not in unique_list_of_urls:
         unique_list_of_urls.append(directory)
-        cmd="curl --upload-file "+filename+" "+protocol+'://'+hostname[1]+directory+'/'
+        cmd="curl -k --upload-file "+filename+" "+protocol+'://'+hostname[1]+directory+'/'
         os.system(cmd)
+        filepath=protocol+'://'+hostname[1]+directory+'/abc'
+      else:
+        filepath="scanned"
 
-      filepath=protocol+'://'+hostname[1]+directory+'/abc'
       return filepath
 
   def check_file_existence_put(self,filepath):            
-    cmd='curl -s -w %{http_code} '+'"'+filepath+'"'+' -o /dev/null > /tmp/respcode'
+    cmd='curl -k --socks 127.0.0.1:9051 -s -w %{http_code} '+'"'+filepath+'"'+' -o /dev/null > /tmp/respcode'
     os.system(cmd)
     f=open('/tmp/respcode','rU')
     respcode=f.readline()
@@ -76,23 +81,23 @@ class BurpExtender(IBurpExtender):
 
     if respcode=='200':
       print 'PUT succeeded - '+filepath
-    elif respcode=='404':
-      print 'PUT failed - '+filepath
+    else:
+      print 'PUT failed - '+filepath+'\t'+respcode
 
     return respcode
 
   def test_delete(self,filepath):
-    cmd='curl -X DELETE '+filepath
+    cmd='curl -k --socks 127.0.0.1:9051 -X DELETE '+filepath
     os.system(cmd)
 
   def check_file_existence_delete(self,filepath):            
-    cmd='curl -s -w %{http_code} '+'"'+filepath+'"'+' -o /dev/null > /tmp/respcode'
+    cmd='curl -k --socks 127.0.0.1:9051 -s -w %{http_code} '+'"'+filepath+'"'+' -o /dev/null > /tmp/respcode'
     os.system(cmd)
     f=open('/tmp/respcode','rU')
     respcode=f.readline()
     f.close()
 
     if respcode=='200':
-      print 'DELETE failed - '+filepath
-    elif respcode=='404':
       print 'DELETE succeeded - '+filepath
+    else:
+      print 'DELETE failed - '+filepath

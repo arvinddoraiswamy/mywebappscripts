@@ -15,3 +15,5 @@ AUTHENTICATION:
 6) If I find nothing to run with in all of that, I mark the test case [SQL Injection - Login page] a 'Success' and move on.
 
 ----------------------------------------------------------------------------------------------------------------------------------
+LDAP:
+   Taken from https://raw.githubusercontent.com/tjomk/wfuzz/master/wordlist/fuzzdb/attack-payloads/ldap/ldap-injection.fuzz.txt

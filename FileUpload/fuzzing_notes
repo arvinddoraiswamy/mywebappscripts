@@ -1,0 +1,1 @@
+for i in {1..200}; do for f in gimp1.png; do zzuf -r 0.01 -s $i < "$f" > "$i-$f"; done; done
