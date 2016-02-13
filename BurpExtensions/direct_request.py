@@ -5,10 +5,10 @@ import re
 import sys
 import os
 
-session_cookie_names = ['JSESSIONID','PeerID']
-urls_in_scope = ['abc.blah.com']
-remote_listening_port = 443
-protocol = 'https'
+session_cookie_names = ['_whetstone_session']
+urls_in_scope = ['whetstone-test']
+remote_listening_port = 80
+protocol = 'http'
 hostname = []
 
 #Adding directory to the path where Python searches for modules
@@ -53,6 +53,7 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener):
       for cookie in session_cookie_names:
         regex=re.compile(r'(.*)(%s=\w+)(;*?)'%cookie,re.IGNORECASE|re.DOTALL)
         m1=regex.match(request_string)
+        pritn m1.group()
         if m1:
           request_string=re.sub(m1.group(2),'',request_string)
           #Restore the manipulated string to the byte array so it can be reused.
