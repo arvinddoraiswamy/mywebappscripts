@@ -11,6 +11,14 @@ This ReadMe is just a list of the Burp extensions and other scripts I have here.
 9. Remove session cookie and reissue request to check Direct requests
 10. Test PUT and DELETE on every single directory that you browse
 11. Scan all SSL hosts in Proxy history
+12. A couple of per_request_decoders of key parts of the request.
+13. Extension which makes Direct requests as a request appears in Proxy History
+14. Make requests without some cookies to identify which cookie is useful
+15. Fuzz the antiCSRF token to check if random tokens are valid
+16. One click to set positions for requests in Intruder
+17. Toggle request method for every request and see if anything changes
+18. Clickjacking POC generator
+19. Wrapper to try and fuzz file upload features
 
 Other scripts/tools/fuzz lists/misc :)
 

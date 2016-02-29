@@ -52,6 +52,44 @@ This is best enabled AFTER you have browsed the entire application and have a hu
 
 Checking SSL configurations of hosts is a very common test. Sometimes though the app you are testing makes connections to other hosts too. These hosts too might be in scope for you. This extension reads your entire proxy history, extracts all hosts that have had SSL connections made to them, and runs the cool tool sslyze against them. It's nothing you can't do by simply running sslyze but since I'm trying to use Burp as a one stop shop for as many tests as possible, this acts as a nice wrapper around them.
 
+12. A couple of per_request_decoders of key parts of the request.
+
+A lot of times we want to URL decode or Base64 decode things. We end up sending bits to Decoder and decoding. While this works, I thought it'd be nice if there was
+a per-request TAB which did the decoding instead.
+
+13. Extension which makes Direct requests as a request appears in Proxy History
+
+This one is kinda nice, strips the cookies off and makes a request and does some basic analysis to check if the URL can be directly accessed as well. All in a new
+adjoining tab as well, so you don't have to test anything separately.
+
+14. Make requests without some cookies to identify which cookie is useful
+
+Sends requests by removing one cookie at a time. This helps identify which cookies are needed for a specific request so you can focus on trying to steal those as
+an attacker.
+
+15. Fuzz the antiCSRF token to check if random tokens are valid
+
+Sends 4 different requests per token to see if the application is checking the validity of the token.
+
+16. One click to set positions for requests in Intruder
+
+Simple one this time, just so you can send a request to Intruder with positions already filled up. You can choose between URL, POST parameters and cookies.
+
+17. Toggle request method for every request and see if anything changes
+
+Sometimes applications behave in a funny manner, if you send a GET instead of a POST and vice-versa. This one does so for every single request in a new tab. The
+response is printed out, so you can see what the app did.
+
+18. Clickjacking POC generator
+
+Speaks for itself really. Right click, generate a Clickjacking POC that you can then open up in a browser and test.
+
+19. Wrapper to try and fuzz file upload features
+
+This one isn't complete to be frank, but I've always had trouble fuzzing file uploads using Intruder. So this nearly complete extension is a wrapper. By writing a 
+couple of lines of Python you can try and fuzz stuff with a large number of files. I'll love it if someone submitted a pull request to handle boundaries in 
+multipart requests before I get to this some day :)
+
 -------------
 1) Request URLs over HTTP - ForceSSL/force_http_req_threaded.py
 
